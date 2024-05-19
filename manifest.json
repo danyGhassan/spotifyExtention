@@ -5,14 +5,14 @@
     "description": "Control Spotify playback from a Chrome extension.",
     "permissions": [
       "identity",
-      "https://api.spotify.com/"
+      "https://developer.spotify.com/dashboard/dfc28855a0614ada8457d5d64e9873ed"
     ],
     "oauth2": {
       "client_id": "dfc28855a0614ada8457d5d64e9873ed",
       "scopes": [
         "user-modify-playback-state"
       ],
-      "redirect_uri": "https://YOUR_EXTENSION_ID.chromiumapp.org/callback"
+      "redirect_uri": "https://kppaeboaejjnkkplbgnloijgilgjfkdn.chromiumapp.org/callback"
     },
     "background": {
       "service_worker": "background.js"
