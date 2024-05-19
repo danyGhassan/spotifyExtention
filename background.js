@@ -1,4 +1,4 @@
-const clientId = 'YOUR_SPOTIFY_CLIENT_ID';
+const clientId = 'dfc28855a0614ada8457d5d64e9873ed';
 const redirectUri = chrome.identity.getRedirectURL('callback');
 let accessToken = '';
 
