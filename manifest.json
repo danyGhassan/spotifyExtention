@@ -1,0 +1,34 @@
+{
+    "manifest_version": 3,
+    "name": "Spotify Controller",
+    "version": "1.0",
+    "description": "Control Spotify playback from a Chrome extension.",
+    "permissions": [
+      "identity",
+      "https://api.spotify.com/"
+    ],
+    "oauth2": {
+      "client_id": "dfc28855a0614ada8457d5d64e9873ed",
+      "scopes": [
+        "user-modify-playback-state"
+      ],
+      "redirect_uri": "https://YOUR_EXTENSION_ID.chromiumapp.org/callback"
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+      }
+    },
+    "icons": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  }
+  
