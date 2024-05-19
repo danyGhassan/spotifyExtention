@@ -5,7 +5,7 @@
     "description": "Control Spotify playback from a Chrome extension.",
     "permissions": [
       "identity",
-      "https://developer.spotify.com/dashboard/dfc28855a0614ada8457d5d64e9873ed"
+      "https://developer.spotify.com/dashboard"
     ],
     "oauth2": {
       "client_id": "dfc28855a0614ada8457d5d64e9873ed",
