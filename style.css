@@ -36,4 +36,10 @@ body {
   .artist-followers, .artist-genres {
     margin-top: 10px;
   }
+  #albums, #topTracks {
+    margin-top: 20px;
+  }
   
+  #albums div, #topTracks div {
+    margin-bottom: 5px;
+  }
