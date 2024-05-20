@@ -1,3 +1,8 @@
+require('dotenv').config();
+
+const client_id = process.env.CLIENT_ID;
+const client_secret = process.env.CLIENT_SECRET;
+
 document.getElementById('searchButton').addEventListener('click', function() {
   const artistName = document.getElementById('artistName').value;
   if (artistName) {
@@ -20,8 +25,6 @@ document.getElementById('searchButton').addEventListener('click', function() {
 });
 
 async function getAccessToken() {
-  const client_id = 'dfc28855a0614ada8457d5d64e9873ed';
-  const client_secret = 'ee853425fdd14c13907b5a18ca600d04';
   const response = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     headers: {
