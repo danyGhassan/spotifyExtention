@@ -60,14 +60,14 @@ async function displayArtistInfo(artist) {
   const albumsDiv = document.getElementById('albums');
   albumsDiv.innerHTML = '<h2>Albums</h2>';
   albums.forEach(album => {
-    albumsDiv.innerHTML += `<div>${album.name} - Total Streams: ${album.total_streams}</div>`;
+    albumsDiv.innerHTML += `<div>${album.name}</div>`;
   });
 
   const topTracks = await getTopTracks(token, artist.id);
   const topTracksDiv = document.getElementById('topTracks');
   topTracksDiv.innerHTML = '<h2>Top Tracks</h2>';
   topTracks.slice(0, 10).forEach((track, index) => {
-    topTracksDiv.innerHTML += `<div>${index + 1}. ${track.name} - Total Streams: ${track.total_streams}</div>`;
+    topTracksDiv.innerHTML += `<div>${index + 1}. ${track.name}</div>`;
   });
 }
 async function getTopTracks(token, artistId) {
@@ -77,12 +77,7 @@ async function getTopTracks(token, artistId) {
     }
   });
   const data = await response.json();
-  return data.tracks.map(track => {
-    return {
-      name: track.name,
-      total_streams: track.popularity
-    };
-  });
+  return data.tracks;
 }
 
 async function getArtistAlbums(token, artistId) {
@@ -92,12 +87,5 @@ async function getArtistAlbums(token, artistId) {
     }
   });
   const data = await response.json();
-  return data.items.map(album => {
-    return {
-      name: album.name,
-      total_streams: album.total_tracks,
-      popularity: album.popularity
-    };
-  });
+  return data.items;
 }
-
