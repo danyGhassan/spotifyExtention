@@ -60,17 +60,16 @@ async function displayArtistInfo(artist) {
   const albumsDiv = document.getElementById('albums');
   albumsDiv.innerHTML = '<h2>Albums</h2>';
   albums.forEach(album => {
-    albumsDiv.innerHTML += `<div>${album.name}</div>`;
+    albumsDiv.innerHTML += `<div>${album.name} - Tracks: ${album.total_tracks}, Popularity: ${album.popularity}</div>`;
   });
 
   const topTracks = await getTopTracks(token, artist.id);
   const topTracksDiv = document.getElementById('topTracks');
   topTracksDiv.innerHTML = '<h2>Top Tracks</h2>';
   topTracks.slice(0, 10).forEach((track, index) => {
-    topTracksDiv.innerHTML += `<div>${index + 1}. ${track.name}</div>`;
+    topTracksDiv.innerHTML += `<div>${index + 1}. ${track.name} - Popularity: ${track.popularity}</div>`;
   });
 }
-
 async function getTopTracks(token, artistId) {
   const response = await fetch(`https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=US`, {
     headers: {
@@ -78,7 +77,12 @@ async function getTopTracks(token, artistId) {
     }
   });
   const data = await response.json();
-  return data.tracks;
+  return data.tracks.map(track => {
+    return {
+      name: track.name,
+      popularity: track.popularity
+    };
+  });
 }
 
 async function getArtistAlbums(token, artistId) {
@@ -88,6 +92,13 @@ async function getArtistAlbums(token, artistId) {
     }
   });
   const data = await response.json();
-  return data.items;
+  return data.items.map(album => {
+    return {
+      name: album.name,
+      release_date: album.release_date,
+      total_tracks: album.total_tracks,
+      popularity: album.popularity
+    };
+  });
 }
 
