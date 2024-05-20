@@ -1,31 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Spotify Controller</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      width: 200px;
-      padding: 10px;
-    }
-    button {
-      display: block;
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 10px;
-      background-color: #1DB954;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  </style>
+  <title>Spotify Artist Info</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>Spotify Controller</h2>
-  <button id="next">Next Track</button>
-  <button id="prev">Previous Track</button>
-
+  <div id="content">
+    <h1>Spotify Artist Info</h1>
+    <input type="text" id="artistName" placeholder="Enter artist name">
+    <button id="searchButton">Search</button>
+    <div id="artistInfo"></div>
+  </div>
   <script src="popup.js"></script>
 </body>
 </html>

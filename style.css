@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    width: 300px;
+    padding: 20px;
+  }
+  
+  #content {
+    text-align: center;
+  }
+  
+  #artistName {
+    width: 80%;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  #searchButton {
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  #artistInfo {
+    margin-top: 20px;
+  }
+  
+  .artist-image {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .artist-name {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .artist-followers, .artist-genres {
+    margin-top: 10px;
+  }
+  
