@@ -89,3 +89,12 @@ async function getArtistAlbums(token, artistId) {
   const data = await response.json();
   return data.items;
 }
+
+document.getElementById('loginButton').addEventListener('click', function() {
+  // Rediriger l'utilisateur vers la page de connexion Spotify
+  window.location.href = 'https://accounts.spotify.com/authorize' +
+    '?client_id=VOTRE_CLIENT_ID' + // Remplacez par votre client ID Spotify
+    '&response_type=token' +
+    '&redirect_uri=REDIRECT_URI' + // Remplacez par votre URI de redirection
+    '&scope=user-read-private%20user-read-email'; // Ajoutez les scopes nécessaires
+});
