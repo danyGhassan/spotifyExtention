@@ -16,6 +16,7 @@ body {
 #artistName {
   width: 80%;
   padding: 8px;
+  margin-bottom: 1px;
 }
 
 #searchButton {
