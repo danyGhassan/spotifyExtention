@@ -24,9 +24,9 @@ body {
   cursor: pointer;
 }
 
-/* #artistInfo {
-  margin-top: 20px;
-} */
+#artistInfo {
+  margin-top: 200px;
+}
 
 .artist-image {
   width: 100%;
