@@ -15,7 +15,7 @@ body {
 
 #artistName {
   width: 80%;
-  padding: 8px;
+  padding: 80px;
   margin-bottom: 10px;
 }
 
@@ -25,7 +25,7 @@ body {
 }
 
 #artistInfo {
-  margin-top: 200px;
+  margin-top: 20px;
 }
 
 .artist-image {
