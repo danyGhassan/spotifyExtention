@@ -1,5 +1,6 @@
 const client_id = 'dfc28855a0614ada8457d5d64e9873ed';
 const client_secret = 'ee853425fdd14c13907b5a18ca600d04';
+let userToken = '';
 
 document.getElementById('searchButton').addEventListener('click', function() {
   const artistName = document.getElementById('artistName').value;
@@ -20,6 +21,18 @@ document.getElementById('searchButton').addEventListener('click', function() {
       document.getElementById('artistInfo').innerText = 'Error getting access token';
     });
   }
+});
+
+document.getElementById('connectButton').addEventListener('click', function() {
+  const redirectUri = chrome.identity.getRedirectURL('oauth2');
+  const authUrl = `https://accounts.spotify.com/authorize?client_id=${client_id}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=user-modify-playback-state`;
+  chrome.identity.launchWebAuthFlow({ url: authUrl, interactive: true }, function(responseUrl) {
+    if (responseUrl) {
+      const urlParams = new URLSearchParams(new URL(responseUrl).hash.replace('#', '?'));
+      userToken = urlParams.get('access_token');
+      console.log('User token:', userToken);
+    }
+  });
 });
 
 async function getAccessToken() {
@@ -54,6 +67,7 @@ async function displayArtistInfo(artist) {
     <div class="artist-genres">Genres: ${artist.genres.join(', ')}</div>
     <div id="albums">Loading albums...</div>
     <div id="topTracks">Loading top tracks...</div>
+    <button id="playButton">Play Top Track</button>
   `;
 
   const token = await getAccessToken();
@@ -68,9 +82,18 @@ async function displayArtistInfo(artist) {
   const topTracksDiv = document.getElementById('topTracks');
   topTracksDiv.innerHTML = '<h2>Top Tracks</h2>';
   topTracks.slice(0, 10).forEach((track, index) => {
-    topTracksDiv.innerHTML += `<div>${index + 1}. ${track.name}</div>`;
+    topTracksDiv.innerHTML += `<div>${index + 1}. ${track.name} (${track.popularity})</div>`;
+  });
+
+  document.getElementById('playButton').addEventListener('click', function() {
+    if (userToken) {
+      playTrack(userToken, topTracks[0].uri);
+    } else {
+      alert('Please connect your Spotify account first.');
+    }
   });
 }
+
 async function getTopTracks(token, artistId) {
   const response = await fetch(`https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=US`, {
     headers: {
@@ -89,4 +112,37 @@ async function getArtistAlbums(token, artistId) {
   });
   const data = await response.json();
   return data.items;
+}
+
+async function playTrack(token, trackUri) {
+  const activeDevice = await getActiveDevice(token);
+  if (activeDevice) {
+    const response = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${activeDevice.id}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        uris: [trackUri]
+      })
+    });
+    if (response.status === 204) {
+      console.log('Track started playing');
+    } else {
+      console.error('Failed to start track:', response.status, response.statusText);
+    }
+  } else {
+    console.error('No active device found');
+  }
+}
+
+async function getActiveDevice(token) {
+  const response = await fetch('https://api.spotify.com/v1/me/player/devices', {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  });
+  const data = await response.json();
+  return data.devices.find(device => device.is_active);
 }
