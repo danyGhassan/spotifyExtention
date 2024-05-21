@@ -90,8 +90,8 @@ body {
   pointer-events: none;
   box-shadow: inset 0 0 0 3px #fff,
               0 0 0 4px #fff,
-              3px -3px 30px #1beabd,
-              -3px 3px 30px #10abff;
+              3px -3px 30px black,
+              -3px 3px 30px black;
 }
 
 html {
