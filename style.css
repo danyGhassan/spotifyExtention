@@ -13,11 +13,11 @@ body {
   text-align: center;
 }
 
-/* #artistName {
+#artistName {
   width: 80%;
   padding: 8px;
   margin-bottom: 10px;
-} */
+}
 
 #searchButton {
   padding: 8px 16px;
