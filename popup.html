@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Spotify Artist Info</title>
-  <style>
-    .artist-image { width: 100px; height: 100px; }
-    .artist-name { font-size: 24px; font-weight: bold; }
-    .artist-followers, .artist-genres { margin: 10px 0; }
-  </style>
+  <title>Spotify Artist</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <input type="text" id="artistName" placeholder="Artist Name">
-  <button id="searchButton">Search</button>
-  <button id="connectButton">Connect to Spotify</button>
-  <div id="artistInfo"></div>
-
+  <div id="content">
+    <h1>Spotify Artist</h1>
+    <input type="text" id="artistName" placeholder="Enter artist name">
+    <button id="searchButton">Search</button>
+    <div id="artistInfo"></div>
+  </div>
   <script src="popup.js"></script>
 </body>
 </html>
