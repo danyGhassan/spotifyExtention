@@ -68,9 +68,11 @@ async function displayArtistInfo(artist) {
   const topTracksDiv = document.getElementById('topTracks');
   topTracksDiv.innerHTML = '<h2>Top Tracks</h2>';
   topTracks.slice(0, 10).forEach((track, index) => {
-    topTracksDiv.innerHTML += `<div>${index + 1}. ${track.name}</div>`;
+    const youtubeUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(track.name + ' ' + artist.name)}`;
+    topTracksDiv.innerHTML += `<div><a href="${youtubeUrl}" target="_blank">${index + 1}. ${track.name}</a></div>`;
   });
 }
+
 async function getTopTracks(token, artistId) {
   const response = await fetch(`https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=US`, {
     headers: {
