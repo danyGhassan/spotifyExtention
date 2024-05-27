@@ -1,4 +1,4 @@
-import {client_id,client_secret} from './id'
+const { client_id, client_secret } = require('./id');
 
 
 document.getElementById('button-92').addEventListener('click', function() {
