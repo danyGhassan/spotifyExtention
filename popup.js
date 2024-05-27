@@ -1,7 +1,5 @@
-// const { client_id } = require('./id');
-// const { client_secret } = require('./id');
-import { client_id } from "./id";
-import { client_secret } from "./id";
+const client_id = 'dfc28855a0614ada8457d5d64e9873ed';
+const client_secret = 'ee853425fdd14c13907b5a18ca600d04';
 
 document.getElementById('button-92').addEventListener('click', function() {
   const artistName = document.getElementById('artistName').value;
