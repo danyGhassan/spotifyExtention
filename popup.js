@@ -51,7 +51,7 @@ async function displayArtistInfo(artist) {
     <img src="${artist.images[0]?.url}" alt="${artist.name}" class="artist-image">
     <div class="artist-name">${artist.name}</div>
     <div class="artist-followers">Followers: ${artist.followers.total.toLocaleString()}</div>
-    <div class="artist-genres">Genres: ${artist.genres.join(', ')}</div>
+    <div class="artist-genres">Genre: ${artist.genres.join(', ')}</div>
     <div id="albums">Loading albums...</div>
     <div id="topTracks">Loading top tracks...</div>
   `;
